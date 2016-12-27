@@ -47,7 +47,7 @@ base64.encodebytes(os.urandom(16)).decode('utf-8').strip()
 Server根据Sec-WebSocket-Key响应Sec-WebSocket-Accept
 这里假定key位收到的Sec-WebSocket-Key,然后拼接guid '258EAFA5-E914-47DA-95CA-C5AB0DC85B11'
 
-```
+```javascript
 //nodejs
 const GUID = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11';
 const crypto = require ('crypto');
@@ -59,7 +59,7 @@ h.digest('base64');
 //python3
 import hashlib
 import base64
-GUID = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11';
+GUID = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11'
 b = hashlib.sha1((key+GUID).encode('utf-8')).digest()
 base64.encodebytes(b).decode('utf-8').strip()
 ```
