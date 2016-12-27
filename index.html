@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+    <head>
+        <title>websocket</title>
+        <script src="/public/client.js"></script>
+    </head>
+    <body>
+        <script>
+            var ws = new WebSocket('ws://localhost:3000');
+            ws.onopen = function(event){
+                console.log('connected ',event);
+            };
+            ws.onclose = function(event){
+                console.log('close ',event);
+            };
+            ws.onmessage = function(event){
+                console.log('message ',event);
+            };
+            ws.onerror = function(event,err){
+                console.log('error ',event,err);
+            };
+        </script>
+    </body>
+</html>

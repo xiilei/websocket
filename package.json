@@ -1,0 +1,11 @@
+{
+  "name": "websocket",
+  "version": "0.1.0",
+  "main": "app.js",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "express": "^4.14.0",
+    "ws": "^1.1.1"
+  }
+}
