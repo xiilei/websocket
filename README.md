@@ -40,7 +40,7 @@ import base64
 base64.encodebytes(os.urandom(16)).decode('utf-8').strip()
 ```
 
-这个header并不能提供安全特性,仍然时有tls(wss)提供的,只是有两个简单的作用
+这个header并不能提供安全特性,仍然是由tls(wss)提供,只是有两个简单的作用
 - Server 向客户端证明其收到并理解 WebSocket协议 (配合server响应的Sec-WebSocket-Accept)
 - Server 可以确定是一个websocket client
 
