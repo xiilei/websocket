@@ -34,18 +34,18 @@ const crypto = require('crypto');
 crypto.randomBytes(16).toString('base64');
 ```
 ```python
-//python3
+#python3
 import os
 import base64
 base64.encodebytes(os.urandom(16)).decode('utf-8').strip()
 ```
 
-这个header并不能提供安全特性,只是有两个简单的作用
+这个header并不能提供安全特性,仍然时有tls(wss)提供的,只是有两个简单的作用
 - Server 向客户端证明其收到并理解 WebSocket协议 (配合server响应的Sec-WebSocket-Accept)
 - Server 可以确定是一个websocket client
 
-Server根据Sec-WebSocket-Key响应Sec-WebSocket-Accept
-这里假定key位收到的Sec-WebSocket-Key,然后拼接guid '258EAFA5-E914-47DA-95CA-C5AB0DC85B11'
+> Server根据Sec-WebSocket-Key响应Sec-WebSocket-Accept
+> 这里假定key位收到的Sec-WebSocket-Key,然后拼接guid '258EAFA5-E914-47DA-95CA-C5AB0DC85B11'
 
 ```javascript
 //nodejs
@@ -56,7 +56,7 @@ h.update(key + GUID);
 h.digest('base64');
 ```
 ```python
-//python3
+#python3
 import hashlib
 import base64
 GUID = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11'
