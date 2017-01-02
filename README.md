@@ -26,7 +26,7 @@ Sec-WebSocket-Extensions:permessage-deflate; client_max_window_bits
 - 必需是GET请求,协议版本至少是1.1
 - 必须有Connection: Upgrade,Upgrade: websocket,Sec-WebSocket-Key,Sec-WebSocket-Version: 13
 
-Sec-WebSocket-Key  base64编码的随机16位字节
+##### Sec-WebSocket-Key（必需）base64编码的随机16位字节
 
 ```javascript
 //nodejs
@@ -68,4 +68,36 @@ base64.encodebytes(b).decode('utf-8').strip()
 ```
 Sec-WebSocket-Accept: E/vXnD05Dl1lhaIeEf9ewZcM/ww=
 ```
+
+##### Sec-WebSocket-Protocol (非必需) 自定义子协议
+> 后面是可以自定义的子消息协议,用逗号分隔
+```
+ Sec-WebSocket-Protocol: chat
+```
+
+##### Sec-WebSocket-Extensions (非必需) 协议扩展
+> 定义传输数据处理的方式,一般是压缩,分号分割
+
+```
+// client
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+//server 选择一个,
+Sec-WebSocket-Extensions: permessage-deflate
+
+／／client如果用逗号分隔的,server 选择第一个数据处理需要 bar(foo(data))
+Sec-WebSocket-Extensions: foo,bar; client_max_window_bits
+```
+##### [数据压缩](https://tools.ietf.org/html/rfc7692)
+> [TODO](compression.md)
+
+一个比较完整的server 握手响应头
+```
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo=
+Sec-WebSocket-Protocol: chat
+Sec-WebSocket-Extensions: permessage-deflate
+```
+
 
