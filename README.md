@@ -122,3 +122,31 @@ Sec-WebSocket-Extensions: permessage-deflate
 +---------------------------------------------------------------+
 ```
 
+> 数据格式描述采用 [ABNF](https://tools.ietf.org/html/rfc5234) [维基百科](https://zh.wikipedia.org/wiki/%E6%89%A9%E5%85%85%E5%B7%B4%E7%A7%91%E6%96%AF%E8%8C%83%E5%BC%8F)
+ 
+
+**FIN** 1bit 标示是否为最后一个frame(第一个也可能是最后一个)
+
+**RSV1** 1bit
+
+**RSV2** 1bit
+
+**RSV3** 1bit
+
+**opcode** 4bit 描述payload data 数据类型
+- %x0 
+- %x1 文本数据
+- %x2 二进制数据
+- %x3-7 预留的非控制类型
+- %x8 连接关闭
+- %x9 ping
+- %xA pong
+- %xB-F 预留的控制类型
+
+**Mask**
+
+**Payload length**
+- 0-125 7bits 数据长度
+- 126 7+16 bits 往后2个字节记录数据长度
+－ 127 7+64 bits 往后8个字节纪录数据长度
+
