@@ -2,7 +2,7 @@
 
 [WebSocket](https://tools.ietf.org/html/rfc6455 "rfc")设计用来替代polling方式并减少headers发送,基于http的通讯协议,所以有几点值得一提
 
-- 完全遵守http协议,支持http的基础设施(代理等）
+- 遵守http协议,支持http的基础设施(代理等）
 - 共享http server socket,不需要另外端口,可以指定request path
 - 支持tls
 
@@ -26,7 +26,7 @@ Sec-WebSocket-Extensions:permessage-deflate; client_max_window_bits
 - 必需是GET请求,协议版本至少是1.1
 - 必须有Connection: Upgrade,Upgrade: websocket,Sec-WebSocket-Key,Sec-WebSocket-Version: 13
 
-##### Sec-WebSocket-Key（必需）base64编码的随机16位字节
+##### Sec-WebSocket-Key（必需）base64编码的随机16字节
 
 ```javascript
 //nodejs
@@ -45,7 +45,7 @@ base64.encodebytes(os.urandom(16)).decode('utf-8').strip()
 - Server 可以确定是一个websocket client
 
 > Server根据Sec-WebSocket-Key响应Sec-WebSocket-Accept
-> 这里假定key位收到的Sec-WebSocket-Key,然后拼接guid '258EAFA5-E914-47DA-95CA-C5AB0DC85B11'
+> 这里假定key为收到的Sec-WebSocket-Key,然后拼接guid '258EAFA5-E914-47DA-95CA-C5AB0DC85B11'
 
 ```javascript
 //nodejs
@@ -84,7 +84,7 @@ Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
 //server 选择一个,
 Sec-WebSocket-Extensions: permessage-deflate
 
-／／client如果用逗号分隔的,server 选择第一个数据处理需要 bar(foo(data))
+//client如果用逗号分隔的,server 选择第一个数据处理需要 bar(foo(data))
 Sec-WebSocket-Extensions: foo,bar; client_max_window_bits
 ```
 ##### [数据压缩](https://tools.ietf.org/html/rfc7692)
