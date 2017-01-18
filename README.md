@@ -100,6 +100,27 @@ Sec-WebSocket-Protocol: chat
 Sec-WebSocket-Extensions: permessage-deflate
 ```
 
+Server处理upgrade
+
+```javascript
+//nodejs
+const http = require('http');
+const srv = http.createServer();
+srv.on('upgrade',(req, socket, head) => {
+    const headers = [
+        'HTTP/1.1 101 Switching Protocols',
+        'Upgrade: websocket',
+        'Connection: Upgrade',
+        'Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo='
+    ];
+    //响应握手http headers
+    socket.write(headers.concat('', '').join('\r\n'));
+    //接收webscoket数据帧
+    socket.on('data',(data) => { handleFrame(data); });
+});
+srv.listen(3000);
+```
+
 ### Data Framing
 ```
  0                   1                   2                   3
@@ -143,7 +164,11 @@ Sec-WebSocket-Extensions: permessage-deflate
 - %xA pong
 - %xB-F 预留的控制类型
 
-**Mask**
+**Mask** 是否拥有masking-key  
+
+Client-to-Server Masking 
+
+**Masking-key** 4 bytes
 
 **Payload length**
 - 0-125 7bits 数据长度
