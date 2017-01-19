@@ -143,12 +143,12 @@ srv.listen(3000);
 +---------------------------------------------------------------+
 ```
 
-> 数据格式描述采用 [ABNF](https://tools.ietf.org/html/rfc5234) [维基百科](https://zh.wikipedia.org/wiki/%E6%89%A9%E5%85%85%E5%B7%B4%E7%A7%91%E6%96%AF%E8%8C%83%E5%BC%8F)
+> 数据格式描述 [ABNF](https://tools.ietf.org/html/rfc5234) [维基百科](https://zh.wikipedia.org/wiki/%E6%89%A9%E5%85%85%E5%B7%B4%E7%A7%91%E6%96%AF%E8%8C%83%E5%BC%8F)
  
 
 **FIN** 1bit 标示是否为最后一个frame(第一个也可能是最后一个)
 
-**RSV1** 1bit
+**RSV1** 1bit 使用启用压缩,此位为 1
 
 **RSV2** 1bit
 
